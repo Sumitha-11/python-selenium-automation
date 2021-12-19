@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 import time
+from selenium.webdriver.support import expected_conditions as EC
+
 
 FIRST_PRODUCT_LINK = (By.CSS_SELECTOR,".a-size-mini a span")
 ADD_TO_CART_BUTTON = (By.ID,"add-to-cart-button")
@@ -17,4 +19,6 @@ def Add_Product_cart(context):
 @then('Click on No thanks Button')
 def Click_NO_Thanks(context):
     context.driver.find_element(*PROTECTION_PLAN).click()
-    time.sleep(4)
+
+    #context.driver.wait.until(EC.element_to_be_selected(PROTECTION_PLAN))
+
