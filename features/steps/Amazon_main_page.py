@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 from time import sleep
+from selenium.webdriver.support import expected_conditions as EC
 
 BEST_SELLER_PAGE = (By.CSS_SELECTOR,"a[href*='/gp/bestsellers/']")
 SEARCH_TAB = (By.CSS_SELECTOR,"#twotabsearchtextbox")
@@ -25,6 +26,8 @@ def Click_cart_icon(context):
 @then('Click on BestSellers Page')
 def Click_BestSeller_Page(context):
     context.driver.find_element(*BEST_SELLER_PAGE).click()
+    context.current_window= context.driver.current_window_handle
+    print(context.current_window)
 
 
 @when('Search for {product}')
