@@ -1,9 +1,7 @@
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 
-@then('Sign-In page should appear.')
-def Sigin_Page(context):
-    Expected_result = context.driver.find_element(By.XPATH, "//h1[@class='a-spacing-small']").text
-    Actual_result = "Sign-In"
-    assert Expected_result == Actual_result
-    print("Test Passed")
+
+@then('{expected_text} page should appear.')
+def sigin_page(context,expected_text):
+    context.app.sign_in_page.verify_sign_in(expected_text)
