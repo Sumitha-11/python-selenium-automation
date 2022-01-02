@@ -12,20 +12,19 @@ COLOR_NAME =(By.CSS_SELECTOR,"#variation_color_name span[class='selection']")
 
 
 @then('Click on First product')
-def Click_First_product(context):
-    context.driver.find_element(*FIRST_PRODUCT_LINK).click()
+def click_first_product(context):
+    context.app.product_detail_page.click_first_product()
 
 
 @then('Click on Add to cart Button')
-def Add_Product_cart(context):
-    context.driver.wait.until(EC.element_to_be_clickable(ADD_TO_CART_BUTTON))
-    context.driver.find_element(*ADD_TO_CART_BUTTON).click()
+def add_product_cart(context):
+    context.app.product_detail_page.add_product_to_cart()
 
 
 @then('Click on No thanks Button')
-def Click_NO_Thanks(context):
-    context.driver.wait.until(EC.element_to_be_clickable(PROTECTION_PLAN))
-    context.driver.find_element(*PROTECTION_PLAN).click()
+def click_no_thanks(context):
+    context.app.product_detail_page.click_no_thanks()
+    time.sleep(5)
 
 
 @given('Open Amazon Product {product_id} Page')
