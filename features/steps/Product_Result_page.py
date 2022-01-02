@@ -9,15 +9,9 @@ CART_COUNT=(By.ID,"nav-cart-count")
 
 @then('Click on cart icon')
 def Click_Cart_Icon(context):
-    context.driver.wait.until(EC.presence_of_element_located(CART_ICON))
-    context.driver.find_element(*CART_ICON).click()
+    context.app.cart_page.click_cart_icon()
 
 
-@then('Verify Cart has {Expected} item')
-def CART_Count(context,Expected):
-    context.driver.wait.until(EC.presence_of_element_located(CART_COUNT))
-    Actual = (context.driver.find_element(*CART_COUNT).text)
-    print(Actual)
-    assert int(Actual) == int(Expected) , f"{Actual} does not match {Expected}"
-    print("Test Passed")
-
+@then('Verify Cart has {expected_count} item')
+def cart_count(context,expected_count):
+    context.app.cart_page.verify_cart_count(expected_count)
