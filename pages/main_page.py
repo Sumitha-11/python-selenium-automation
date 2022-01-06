@@ -2,4 +2,5 @@ from pages.base_page import Page
 
 class MainPage(Page):
 
-    pass
+    def open_product_page(self,product_id):
+        self.open_page(f'gp/product/{product_id}')
