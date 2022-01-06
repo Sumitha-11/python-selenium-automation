@@ -1,14 +1,13 @@
 import time
 
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from behave import given, when, then
 from time import sleep
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
 
 BEST_SELLER_PAGE = (By.CSS_SELECTOR,"a[href*='/gp/bestsellers/']")
-#SEARCH_TAB = (By.CSS_SELECTOR,"#twotabsearchtextbox")
-#SEARCH_ICON=(By.ID,"nav-search-submit-button")
-
 
 @given('Open Amazon page')
 def open_Amazon(context):
@@ -43,6 +42,24 @@ def click_bestseller_page(context):
 @then('Results for {expected_text} are shown')
 def search_results(context,expected_text):
     context.app.search_result_page.verify_search_result(expected_text)
+
+
+@when('Hover over language options')
+def hover_over_language(context):
+    context.app.header.hover_language()
+
+
+@then('verify Spanish option present')
+def verify_spanish_language(context):
+    context.app.header.spanish_language_present()
+
+
+@when('Select department by alias {department}')
+def select_department(context,department):
+    context.app.header.select_department(department)
+
+
+
 
 
 
