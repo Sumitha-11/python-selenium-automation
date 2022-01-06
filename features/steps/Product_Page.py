@@ -24,12 +24,6 @@ def add_product_cart(context):
 @then('Click on No thanks Button')
 def click_no_thanks(context):
     context.app.product_detail_page.click_no_thanks()
-    time.sleep(5)
-
-
-@given('Open Amazon Product {product_id} Page')
-def open_Amazon_product(context,product_id):
-    context.driver.get(f"https://www.amazon.com/gp/product/{product_id}")
 
 
 @then('Verify user can click through {Expected_colors} of the product')
@@ -41,9 +35,28 @@ def Click_on_color(context,Expected_colors):
         Actual_color += [context.driver.find_element(*COLOR_NAME).text]
     print(Actual_color)
     Actual_color=str(Actual_color)
-
     assert (Actual_color) == (Expected_colors),f"{Actual_color} does not match {Expected_colors}"
     print("Test Passed")
+
+
+@given('Open Amazon Product {product_id} Page')
+def open_Amazon_product(context,product_id):
+    context.app.main_page.open_product_page(product_id)
+
+
+@when('Hover over new arrivals')
+def hover_new_arrivals(context):
+    context.app.product_detail_page.hover_new_arrivals()
+
+
+@then('Verify {5} category are present')
+def veify_different_category(context,expected_count):
+    context.app.product_detail_page.verify_category(expected_count)
+
+
+@then('Verify women category is present')
+def verify_women_categoty(context):
+    context.app.product_detail_page.verify_women_category()
 
 
 
