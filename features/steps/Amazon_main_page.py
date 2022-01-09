@@ -1,11 +1,6 @@
-import time
-
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from behave import given, when, then
-from time import sleep
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.select import Select
+
 
 BEST_SELLER_PAGE = (By.CSS_SELECTOR,"a[href*='/gp/bestsellers/']")
 
